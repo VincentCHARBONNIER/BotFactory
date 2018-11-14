@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotFactory", "BotFactory\Bo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{94C9EC0E-2968-488D-AAEE-7D7B10BC31FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{5D6B6120-070B-4789-B060-7701CDAEFD8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{94C9EC0E-2968-488D-AAEE-7D7B10BC31FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94C9EC0E-2968-488D-AAEE-7D7B10BC31FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94C9EC0E-2968-488D-AAEE-7D7B10BC31FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D6B6120-070B-4789-B060-7701CDAEFD8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D6B6120-070B-4789-B060-7701CDAEFD8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D6B6120-070B-4789-B060-7701CDAEFD8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D6B6120-070B-4789-B060-7701CDAEFD8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
