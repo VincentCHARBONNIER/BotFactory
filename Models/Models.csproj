@@ -43,6 +43,8 @@
     <Compile Include="BaseUnit.cs" />
     <Compile Include="BuildableUnit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportingUnit.cs" />
+    <Compile Include="StatusChangedEventArgs .cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

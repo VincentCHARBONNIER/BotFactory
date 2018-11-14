@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BotFactory.Models
 {
-    public abstract class BaseUnit : BuildableUnit
+    public abstract class BaseUnit : ReportingUnit
     {
         public string Name { get; set; }
 
