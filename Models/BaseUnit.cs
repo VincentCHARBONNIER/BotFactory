@@ -27,7 +27,7 @@ namespace BotFactory.Models
             this.CurrentPos = new Coordinates(0,0);
         }
 
-        public async Task Move (Coordinates beginPos, Coordinates endPos)
+        public async Task<bool> Move (Coordinates beginPos, Coordinates endPos)
         {
             try
             {
@@ -39,16 +39,16 @@ namespace BotFactory.Models
                     // Add delay & conversion secondes en millisecondes.
                     await Task.Delay(time*1000);
 
-                    //return true;
+                    return true;
                 }
-                //else
-                //{
-                //    return false;
-                //}
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception)
             {
-                //return false ;
+                return false ;
             }
         }
     }
