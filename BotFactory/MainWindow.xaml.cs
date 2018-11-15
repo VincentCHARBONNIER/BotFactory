@@ -1,28 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BotFactory.Factories;
+using BotFactory.Pages;
+using BotFactory.Tools;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace BotFactory
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        private DataContext _dataContext = new DataContext();
+        private FactoryTest _factoryTestPage = new FactoryTest();
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Navigate(_factoryTestPage);
+            _factoryTestPage.SetTestingFactory(new UnitFactory(5, 10));
         }
     }
 }
