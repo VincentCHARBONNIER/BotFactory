@@ -1,4 +1,5 @@
-﻿using BotFactory.Common.Tools;
+﻿using BotFactory.Common.Interface;
+using BotFactory.Common.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BotFactory.Models
 {
-    public abstract class WorkingUnit : BaseUnit
+    public abstract class WorkingUnit : BaseUnit, IWorkingUnit
     {
         // Propriétés.
         public Coordinates ParkingPos { get; set; }

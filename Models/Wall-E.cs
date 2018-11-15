@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BotFactory.Common.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BotFactory.Models
 {
-    public class Wall_E : WorkingUnit
+    public class Wall_E : WorkingUnit, IWall_E
     {
         // Constructeur.
         public Wall_E() : base(2, "Wall_E", 4)

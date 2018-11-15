@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BotFactory.Common.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BotFactory.Models
 {
-    public class R2D2 : WorkingUnit
+    public class R2D2 : WorkingUnit, IR2D2
     {
         // Constructeur.
         public R2D2() : base(1.5, "R2D2", 5.5)

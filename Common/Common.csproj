@@ -40,8 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interface\IBaseUnit.cs" />
+    <Compile Include="Interface\IBuildableUnit.cs" />
+    <Compile Include="Interface\IHAL.cs" />
+    <Compile Include="Interface\IR2D2.cs" />
+    <Compile Include="Interface\IReportingUnit.cs" />
+    <Compile Include="Interface\IStatusChangedEventArgs.cs" />
+    <Compile Include="Interface\IT_800.cs" />
+    <Compile Include="Interface\IWall_E.cs" />
+    <Compile Include="Interface\IWorkingUnit.cs" />
     <Compile Include="Tools\Coordinates.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Interface\ICoordinates.cs" />
+    <Compile Include="Interface\IVector.cs" />
     <Compile Include="Tools\Vector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
