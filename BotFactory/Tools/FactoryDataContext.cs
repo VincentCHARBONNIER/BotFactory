@@ -95,7 +95,7 @@ namespace BotFactory.Tools
             }
         }
 
-        public List<IFactoryQueueElement> Queue
+        public Queue<IFactoryQueueElement> Queue
         {
             get
             {

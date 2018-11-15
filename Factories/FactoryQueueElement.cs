@@ -24,7 +24,7 @@ namespace BotFactory.Factories
         {
 
         }
-        public FactoryQueueElement(string name, Type model, Coordinates parkingPos, Coordinates workingPos)
+        public FactoryQueueElement(Type model, string name, Coordinates parkingPos, Coordinates workingPos)
         {
             this.Name = name;
             this.Model = model;

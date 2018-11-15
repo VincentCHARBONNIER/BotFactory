@@ -25,7 +25,7 @@ namespace BotFactory.Pages
         public void SetTestingFactory(UnitFactory factory)
         {
             _dataContext.Builder = factory;
-            _dataContext.Builder.FactoryProgress += Builder_FactoryProgress;
+            _dataContext.Builder.FactoryStatus += Builder_FactoryProgress;
         }
         private void Builder_FactoryProgress(object sender, System.EventArgs e)
         {

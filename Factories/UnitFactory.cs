@@ -19,6 +19,31 @@ namespace BotFactory.Factories
 
         public event EventHandler FactoryProgress;
 
+        public static object thisLock = new object();
+
+        public TimeSpan QueueTime { get; set; }
+
+        // Propriétées calculées.
+        public int QueueFreeSlots
+        {
+            get
+            {
+                return QueueCapacity - Queue.Count;
+            }
+
+            set {; }
+        }
+
+        public int StorageFreeSlots
+        {
+            get
+            {
+                return StorageCapacity - Storage.Count;
+            }
+
+            set {; }
+        }
+
         // Constructeurs.
         public UnitFactory (int queueCapacity, int storageCapacity)
         {
@@ -33,8 +58,20 @@ namespace BotFactory.Factories
         {
             try
             {
-                // A modifier.
-                return true;
+                if (this.QueueCapacity > this.Queue.Count && this.StorageCapacity > this.Storage.Count)
+                {
+                    lock (thisLock)
+                    {
+                        IFactoryQueueElement commande = new FactoryQueueElement(model, Name, parkingCor, workingCor);
+                        Queue.Enqueue(commande);
+                        return true;
+                    }
+                }
+
+                else
+                {
+                    return false;
+                }
             }
             catch (Exception)
             {
