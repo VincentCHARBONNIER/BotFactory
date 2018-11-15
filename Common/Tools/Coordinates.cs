@@ -8,10 +8,12 @@ namespace BotFactory.Common.Tools
 {
     public class Coordinates
     {
+        //Propriétés.
         public double X { get; set; }
 
         public double Y { get; set; }
 
+        // Constructeurs.
         public Coordinates()
         {
             this.X = 0;
@@ -24,6 +26,7 @@ namespace BotFactory.Common.Tools
             this.Y = y;
         }
 
+        // Méthodes.
         public override bool Equals(object obj)
         {
             if (obj == null || !this.GetType().Equals(obj.GetType()))

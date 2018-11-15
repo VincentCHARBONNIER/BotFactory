@@ -8,13 +8,22 @@ namespace BotFactory.Models
 {
     public abstract class ReportingUnit : BuildableUnit
     {
+        // Propriétée.
         public event EventHandler UnitStatusChanged;
 
+        // Constructeur.
         public ReportingUnit()
         {
 
         }
 
+        public ReportingUnit(double buildTime)
+            : base(buildTime)
+        {
+
+        }
+
+        // Méthode.
         public virtual void OnStatusChanged (StatusChangedEventArgs e)
         {
             if (this.UnitStatusChanged != null)

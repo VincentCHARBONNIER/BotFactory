@@ -9,14 +9,22 @@ namespace BotFactory.Models
 {
     public abstract class BaseUnit : ReportingUnit
     {
+        // Propriétés.
         public string Name { get; set; }
 
         public double Speed { get; set; }
 
         public Coordinates CurrentPos { get; set; }
 
+        // Constructeurs.
         public BaseUnit()
         {
+            this.Speed = 1;
+        }
+
+        public BaseUnit(string name)
+        {
+            this.Name = name;
             this.Speed = 1;
         }
 
@@ -27,6 +35,22 @@ namespace BotFactory.Models
             this.CurrentPos = new Coordinates(0,0);
         }
 
+        public BaseUnit(double buildTime, double vitesse = 1)
+            : base(buildTime)
+        {
+            this.Speed = vitesse;
+            this.CurrentPos = new Coordinates(0, 0);
+        }
+
+        public BaseUnit(double buildTime, string name, double speed = 1)
+            : base(buildTime)
+        {
+            this.Name = name;
+            this.Speed = speed;
+            this.CurrentPos = new Coordinates(0, 0);
+        }
+
+        // Méthodes.
         public async Task<bool> Move (Coordinates beginPos, Coordinates endPos)
         {
             try

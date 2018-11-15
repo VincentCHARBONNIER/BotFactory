@@ -8,8 +8,10 @@ namespace BotFactory.Models
 {
     public class StatusChangedEventArgs : EventArgs
     {
+        // Propriétée.
         public string NewStatus { get; set; }
 
+        // Constructeur.
         public StatusChangedEventArgs(string newStatus)
         {
             this.NewStatus = newStatus;

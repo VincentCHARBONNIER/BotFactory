@@ -8,10 +8,12 @@ namespace BotFactory.Common.Tools
 {
     public class Vector
     {
+        // Propriétés.
         public double X { get; set; }
 
         public double Y { get; set; }
 
+        // Constructeurs.
         public Vector()
         {
             this.X = 0;
@@ -24,6 +26,7 @@ namespace BotFactory.Common.Tools
             this.Y = y;
         }
 
+        // Méthodes.
         public static Vector FromCoordinates(Coordinates begin, Coordinates end)
         {
             return new Vector(Math.Abs(end.X - begin.X), Math.Abs(end.Y - begin.Y));

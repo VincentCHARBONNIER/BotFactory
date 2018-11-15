@@ -8,8 +8,10 @@ namespace BotFactory.Models
 {
     public abstract class BuildableUnit
     {
+        // Propriétés.
         public double BuildTime { get; set; }
 
+        // Constructeurs.
         public BuildableUnit()
         {
             this.BuildTime = 5;
