@@ -62,7 +62,7 @@ namespace BotFactory.Factories
                 OnStatusChangedFactory(new StatusChangedEventArgs("Ajoutons le robot " + Name + " à la file d'attente !"));
                 if (this.QueueCapacity > this.Queue.Count && this.StorageCapacity > this.Storage.Count)
                 {
-                    FactoryQueueElement commande = new FactoryQueueElement(model, Name, parkingCor, workingCor);
+                    IFactoryQueueElement commande = new FactoryQueueElement(model, Name, parkingCor, workingCor);
 
                     if (commande != null)
                     {
