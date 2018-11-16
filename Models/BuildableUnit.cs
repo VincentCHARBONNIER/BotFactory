@@ -12,6 +12,8 @@ namespace BotFactory.Models
         // Propriétés.
         public double BuildTime { get; set; }
 
+        public string Model { get; set; }
+
         // Constructeurs.
         public BuildableUnit()
         {
