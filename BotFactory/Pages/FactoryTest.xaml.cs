@@ -2,8 +2,10 @@
 using BotFactory.Common.Interface;
 using BotFactory.Common.Tools;
 using BotFactory.Factories;
+using BotFactory.Models;
 using BotFactory.Tools;
 using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace BotFactory.Pages
@@ -33,9 +35,21 @@ namespace BotFactory.Pages
         }
         private void AddUnitToQueue_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (ModelsList.SelectedIndex >= 0 && !String.IsNullOrEmpty(UnitName.Text))
+            if (ModelsList.SelectedIndex >= 0 && !string.IsNullOrEmpty(UnitName.Text))
             {
                 Type item = (Type)ModelsList.SelectedItem;
+                WorkingUnit instance = (WorkingUnit)Activator.CreateInstance(item);
+                MessageBoxResult result = MessageBox.Show("Vous avez choisi de construire le robot " + instance.Name +   " qui a pour temps de construction " + instance.BuildTime +  " . Etes-vous sûr de vouloir construire ce robot ?", "BotFactory", MessageBoxButton.YesNo);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        MessageBox.Show("C'est parti !", "BotFactory");
+                        break;
+                    case MessageBoxResult.No:
+                        MessageBox.Show("Dommage, aller tu peux le faire !", "BotFactory");
+                        return;
+                }
+
                 var name = UnitName.Text;
                 _dataContext.Builder.AddWorkableUnitToQueue(item, name, new Coordinates(0, 0), new Coordinates(10, 10));
                 _dataContext.ForceUpdate();

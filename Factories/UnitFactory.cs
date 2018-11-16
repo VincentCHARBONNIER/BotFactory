@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BotFactory.Factories
@@ -60,11 +61,19 @@ namespace BotFactory.Factories
             {
                 if (this.QueueCapacity > this.Queue.Count && this.StorageCapacity > this.Storage.Count)
                 {
-                    lock (thisLock)
+                    IFactoryQueueElement commande = new FactoryQueueElement(model, Name, parkingCor, workingCor);
+
+                    if (commande != null)
                     {
-                        IFactoryQueueElement commande = new FactoryQueueElement(model, Name, parkingCor, workingCor);
-                        Queue.Enqueue(commande);
-                        return true;
+                        lock (thisLock)
+                        {
+                            Queue.Enqueue(commande);
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
 
