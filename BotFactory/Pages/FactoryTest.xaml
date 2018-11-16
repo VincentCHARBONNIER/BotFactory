@@ -57,7 +57,7 @@
                 <Label Grid.Column="1" Grid.Row="4" Content="{Binding QueueTime}"/>
 
             </Grid>
-            
+
             <ListView Grid.Column="1" ItemsSource="{Binding Queue}" BorderBrush="Black" BorderThickness="1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -82,14 +82,27 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        
         <Grid Grid.Row="1">
+        <StackPanel Margin="10">
+            <ComboBox Name="ModelsRobots" IsEditable="True" ItemsSource="{Binding Models}" SelectionChanged="ModelsRobots_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                            <TextBlock Text="{Binding Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            
+
             <ListView Name="ModelsList" Grid.Row="0" ItemsSource="{Binding Models}" SelectionMode="Single" SelectionChanged="ModelsList_SelectionChanged">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -119,6 +132,6 @@
             <Button IsEnabled="False" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" Name="AddUnitToQueue" Content="Add Unit to Queue" Click="AddUnitToQueue_Click"/>
         </Grid>
 
-        <Frame Grid.Row="2" Name="UnitFrame" NavigationUIVisibility="Hidden"/>
+        <Frame Grid.Row="3" Name="UnitFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Page>

@@ -5,6 +5,7 @@ using BotFactory.Factories;
 using BotFactory.Models;
 using BotFactory.Tools;
 using System;
+using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -35,11 +36,13 @@ namespace BotFactory.Pages
         }
         private void AddUnitToQueue_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (ModelsList.SelectedIndex >= 0 && !string.IsNullOrEmpty(UnitName.Text))
+            //if (ModelsList.SelectedIndex >= 0 && !string.IsNullOrEmpty(UnitName.Text))
+            if (ModelsRobots.SelectedIndex >= 0 && !string.IsNullOrEmpty(UnitName.Text))
             {
-                Type item = (Type)ModelsList.SelectedItem;
+                //Type item = (Type)ModelsList.SelectedItem;
+                Type item = (Type)ModelsRobots.SelectedItem;
                 WorkingUnit instance = (WorkingUnit)Activator.CreateInstance(item);
-                MessageBoxResult result = MessageBox.Show("Vous avez choisi de construire le robot " + instance.Name +   " qui a pour temps de construction " + instance.BuildTime +  " . Etes-vous sûr de vouloir construire ce robot ?", "BotFactory", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show("Vous avez choisi de construire le robot " + instance.Name + " qui a pour temps de construction " + instance.BuildTime + " . Etes-vous sûr de vouloir construire ce robot ?", "BotFactory", MessageBoxButton.YesNo);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
@@ -66,6 +69,15 @@ namespace BotFactory.Pages
         private void ModelsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateButtonValidity();
+        }
+
+        private void ModelsRobots_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ModelsRobots.SelectedIndex >= 0)
+            {
+                AddUnitToQueue.IsEnabled = true;
+            }
+
         }
 
         private void StorageList_SelectionChanged(object sender, SelectionChangedEventArgs e)
