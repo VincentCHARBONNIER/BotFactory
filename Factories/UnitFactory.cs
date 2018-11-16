@@ -74,7 +74,7 @@ namespace BotFactory.Factories
                         {
                             ITestingUnit robotToTest = (ITestingUnit)Activator.CreateInstance(commande.Model, new object[] { });
 
-                            robotToTest.Model = Name;
+                            robotToTest.Name = Name;
                             robotToTest.ParkingPos = parkingCor;
                             robotToTest.WorkingPos = workingCor;
 

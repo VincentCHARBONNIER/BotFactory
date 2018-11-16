@@ -43,10 +43,8 @@ namespace BotFactory.Pages
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
-                        MessageBox.Show("C'est parti !", "BotFactory");
                         break;
                     case MessageBoxResult.No:
-                        MessageBox.Show("Dommage, aller tu peux le faire !", "BotFactory");
                         return;
                 }
 
