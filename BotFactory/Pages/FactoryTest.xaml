@@ -84,11 +84,11 @@
         </Grid>
         <Grid Grid.Row="1">
         <StackPanel Margin="10">
-            <ComboBox Name="ModelsRobots" IsEditable="True" ItemsSource="{Binding Models}" SelectionChanged="ModelsRobots_SelectionChanged">
+            <ComboBox Name="ModelsRobots" IsEditable="False" ItemsSource="{Binding Models}" SelectionChanged="ModelsRobots_SelectionChanged" Margin="0,0,317,0">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                            <Rectangle Fill="{Binding Name}" Width="16" Height="16"/>
                             <TextBlock Text="{Binding Name}" />
                         </StackPanel>
                     </DataTemplate>

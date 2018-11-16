@@ -22,6 +22,7 @@ namespace BotFactory.Pages
         public FactoryTest()
         {
             InitializeComponent();
+            ModelsRobots.SelectedIndex = 0;
             DataContext = _dataContext;
         }
 
@@ -58,7 +59,7 @@ namespace BotFactory.Pages
         }
         private void UpdateButtonValidity()
         {
-            AddUnitToQueue.IsEnabled = ModelsList.SelectedIndex >= 0 && !String.IsNullOrEmpty(UnitName.Text);
+            AddUnitToQueue.IsEnabled = (ModelsList.SelectedIndex >= 0 || ModelsRobots.SelectedIndex >= 0) && !string.IsNullOrEmpty(UnitName.Text);
         }
 
         private void UnitName_TextChanged(object sender, TextChangedEventArgs e)
@@ -73,11 +74,7 @@ namespace BotFactory.Pages
 
         private void ModelsRobots_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ModelsRobots.SelectedIndex >= 0)
-            {
-                AddUnitToQueue.IsEnabled = true;
-            }
-
+            UpdateButtonValidity();
         }
 
         private void StorageList_SelectionChanged(object sender, SelectionChangedEventArgs e)
