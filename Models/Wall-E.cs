@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BotFactory.Models
 {
-    public class Wall_E : WorkingUnit, IWall_E
+    public class Wall_E : WorkingUnit, IWall_E, ITestingUnit
     {
         // Constructeur.
         public Wall_E() : base(2, "Wall_E", 4)

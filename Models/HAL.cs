@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BotFactory.Models
 {
-    public class HAL : WorkingUnit, IHAL
+    public class HAL : WorkingUnit, IHAL, ITestingUnit
     {
         // Constructeur
         public HAL() : base(0.5, "HAL", 7)

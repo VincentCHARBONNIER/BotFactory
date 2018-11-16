@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BotFactory.Models
 {
-    public class R2D2 : WorkingUnit, IR2D2
+    public class R2D2 : WorkingUnit, IR2D2, ITestingUnit
     {
         // Constructeur.
         public R2D2() : base(1.5, "R2D2", 5.5)

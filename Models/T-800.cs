@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BotFactory.Models
 {
-    public class T_800 : WorkingUnit, IT_800
+    public class T_800 : WorkingUnit, IT_800, ITestingUnit
     {
         // Constructeur
         public T_800() : base(3, "T-800", 10)

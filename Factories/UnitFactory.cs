@@ -72,8 +72,7 @@ namespace BotFactory.Factories
 
                         lock (thisLock)
                         {
-                            //Type robotToTest = (Type)Activator.CreateInstance(commande.Model);
-                            WorkingUnit robotToTest = Activator.CreateInstance(commande.Model, new object[] { }) as WorkingUnit;
+                            ITestingUnit robotToTest = (ITestingUnit)Activator.CreateInstance(commande.Model, new object[] { });
 
                             robotToTest.Model = Name;
                             robotToTest.ParkingPos = parkingCor;
@@ -81,9 +80,9 @@ namespace BotFactory.Factories
 
                             OnStatusChangedFactory(new StatusChangedEventArgs("Maintenant, le robot est prêt à être testé !"));
                             Monitor.Wait(thisLock, Convert.ToInt32(robotToTest.BuildTime) * 1000);
-                            //Storage.Add(robotToTest);
+                            Storage.Add(robotToTest);
                             Queue.Dequeue();
-                            QueueTime += TimeSpan.FromSeconds(robotToTest.BuildTime);
+                            QueueTime += TimeSpan.FromMilliseconds(robotToTest.BuildTime);
                             OnStatusChangedFactory(new StatusChangedEventArgs("Let's go !"));
                             Monitor.Pulse(thisLock);
 
