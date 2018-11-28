@@ -54,12 +54,22 @@ namespace BotFactory.Pages
 
                 var name = UnitName.Text;
                 _dataContext.Builder.AddWorkableUnitToQueue(item, name, new Coordinates(0, 0), new Coordinates(10, 10));
+
                 _dataContext.ForceUpdate();
+
+
+                // Update Storage and Queue ItemsSources.
+                StorageList.Items.Refresh();
+                QueueList.Items.Refresh();
+
+                // Réinitialisation de la ComboBox.
+                ModelsRobots.SelectedIndex = 0;
             }
         }
         private void UpdateButtonValidity()
         {
-            AddUnitToQueue.IsEnabled = (ModelsList.SelectedIndex >= 0 || ModelsRobots.SelectedIndex >= 0) && !string.IsNullOrEmpty(UnitName.Text);
+            //AddUnitToQueue.IsEnabled = (ModelsList.SelectedIndex >= 0 || ModelsRobots.SelectedIndex >= 0) && !string.IsNullOrEmpty(UnitName.Text);
+            AddUnitToQueue.IsEnabled = ModelsRobots.SelectedIndex >= 0 && !string.IsNullOrEmpty(UnitName.Text);
         }
 
         private void UnitName_TextChanged(object sender, TextChangedEventArgs e)

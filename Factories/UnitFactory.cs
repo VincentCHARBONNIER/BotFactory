@@ -13,10 +13,10 @@ namespace BotFactory.Factories
     public class UnitFactory : IUnitFactory
     {
         // Propriétées.
-        public int QueueCapacity { get; set; }
-        public int StorageCapacity { get; set; }
-        public Queue<IFactoryQueueElement> Queue { get; set; }
-        public List<ITestingUnit> Storage { get; set; }
+        public int QueueCapacity { get; private set; }
+        public int StorageCapacity { get; private set; }
+        public Queue<IFactoryQueueElement> Queue { get; private set; }
+        public List<ITestingUnit> Storage { get; private set; }
 
         public event EventHandler FactoryProgress;
 
@@ -31,8 +31,6 @@ namespace BotFactory.Factories
             {
                 return QueueCapacity - Queue.Count;
             }
-
-            set {; }
         }
 
         public int StorageFreeSlots
@@ -41,8 +39,6 @@ namespace BotFactory.Factories
             {
                 return StorageCapacity - Storage.Count;
             }
-
-            set {; }
         }
 
         // Constructeurs.
@@ -55,54 +51,50 @@ namespace BotFactory.Factories
         }
 
         // Méthodes.
-        public bool AddWorkableUnitToQueue(Type model, string Name, Coordinates parkingCor, Coordinates workingCor)
+        public bool AddWorkableUnitToQueue(Type model, string name, Coordinates parkingCor, Coordinates workingCor)
         {
             try
             {
-                OnStatusChangedFactory(new StatusChangedEventArgs("Ajoutons le robot " + Name + " à la file d'attente !"));
-                if (this.QueueCapacity > this.Queue.Count && this.StorageCapacity > this.Storage.Count)
-                {
-                    IFactoryQueueElement commande = new FactoryQueueElement(model, Name, parkingCor, workingCor);
-
-                    if (commande != null)
-                    {
-
-                        Queue.Enqueue(commande);
-                        OnStatusChangedFactory(new StatusChangedEventArgs("C'est chose faite, continuons maintenant !"));
-
-                        lock (thisLock)
-                        {
-                            ITestingUnit robotToTest = (ITestingUnit)Activator.CreateInstance(commande.Model, new object[] { });
-
-                            robotToTest.Name = Name;
-                            robotToTest.ParkingPos = parkingCor;
-                            robotToTest.WorkingPos = workingCor;
-
-                            OnStatusChangedFactory(new StatusChangedEventArgs("Maintenant, le robot est prêt à être testé !"));
-                            Monitor.Wait(thisLock, Convert.ToInt32(robotToTest.BuildTime) * 1000);
-                            Storage.Add(robotToTest);
-                            Queue.Dequeue();
-                            QueueTime += TimeSpan.FromMilliseconds(robotToTest.BuildTime);
-                            OnStatusChangedFactory(new StatusChangedEventArgs("Let's go !"));
-                            Monitor.Pulse(thisLock);
-
-                            return true;
-                        }
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-
-                else
+                if (this.QueueCapacity < this.Queue.Count && this.StorageCapacity < this.Storage.Count)
                 {
                     return false;
                 }
+
+                OnStatusChangedFactory(new StatusChangedEventArgs("Ajoutons le robot " + name + " à la file d'attente !"));
+                FactoryQueueElement commande = new FactoryQueueElement(model, name, parkingCor, workingCor);
+
+                if (null == commande)
+                {
+                    return false;
+                }
+
+                Queue.Enqueue(commande);
+                OnStatusChangedFactory(new StatusChangedEventArgs("C'est chose faite, continuons maintenant !"));
+
+                lock (thisLock)
+                {
+                    ITestingUnit robotToTest = (ITestingUnit)Activator.CreateInstance(commande.Model);
+
+                    robotToTest.Name = name;
+                    robotToTest.Model = model.Name;
+                    robotToTest.ParkingPos = parkingCor;
+                    robotToTest.WorkingPos = workingCor;
+
+                    OnStatusChangedFactory(new StatusChangedEventArgs("Maintenant, le robot est prêt à être testé !"));
+                    Monitor.Wait(thisLock, Convert.ToInt32(robotToTest.BuildTime) * 1000);
+                    Storage.Add(robotToTest);
+                    Queue.Dequeue();
+                    QueueTime += TimeSpan.FromMilliseconds(robotToTest.BuildTime);
+                    OnStatusChangedFactory(new StatusChangedEventArgs("Let's go !"));
+                    Monitor.Pulse(thisLock);
+
+                    return true;
+
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 

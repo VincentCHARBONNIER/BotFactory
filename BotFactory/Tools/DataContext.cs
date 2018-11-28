@@ -9,8 +9,8 @@ namespace BotFactory.Tools
     public class DataContext : INotifyPropertyChanged
     {
         private ITestingUnit _ibot = null;
-        private Boolean _response = false;
-        private Boolean _working = false;
+        private bool _response = false;
+        private bool _working = false;
 
         #region Properties
 

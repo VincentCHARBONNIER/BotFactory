@@ -17,7 +17,7 @@ namespace BotFactory.Tools
             get { return _models; }
         }
 
-        public String Name { get; set; }
+        public string Name { get; set; }
         
         private IUnitFactory _builder;
 

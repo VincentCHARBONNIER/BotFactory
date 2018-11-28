@@ -11,9 +11,9 @@ namespace BotFactory.Tools
     public class UnitDataContext : INotifyPropertyChanged
     {
         private ITestingUnit _ibot = null;
-        private Boolean _response = false;
-        private Boolean _working = false;
-        private ObservableCollection<String> _reporting = new ObservableCollection<String>();
+        private bool _response = false;
+        private bool _working = false;
+        private ObservableCollection<string> _reporting = new ObservableCollection<string>();
 
         #region Properties
         
@@ -33,7 +33,7 @@ namespace BotFactory.Tools
             }
         }
 
-        public ObservableCollection<String> Reports
+        public ObservableCollection<string> Reports
         {
             get
             {
@@ -59,25 +59,25 @@ namespace BotFactory.Tools
             Response = false;
         }
 
-        public Boolean Response
+        public bool Response
         {
             get { return _response; }
             set { SetField(ref _response, value, nameof(Response)); }
         }
 
-        public Boolean Working
+        public bool Working
         {
             get { return _working; }
             set { SetField(ref _working, value, nameof(Working)); }
         }
 
-        public String Model
+        public string Model
         {
             get { return _ibot.GetType().Name; }
             set { OnPropertyChanged("Model"); }
         }
 
-        public Double BuildTime
+        public double BuildTime
         {
             get { return _ibot.BuildTime; }
             set { OnPropertyChanged("BuildTime"); }

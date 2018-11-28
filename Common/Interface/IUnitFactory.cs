@@ -6,14 +6,14 @@ namespace BotFactory.Common.Interface
 {
     public interface IUnitFactory
     {
-        int QueueCapacity { get; set; }
-        int StorageCapacity { get; set; }
-        Queue<IFactoryQueueElement> Queue { get; set; }
-        List<ITestingUnit> Storage { get; set; }
+        int QueueCapacity { get; }
+        int StorageCapacity { get;  }
+        Queue<IFactoryQueueElement> Queue { get; }
+        List<ITestingUnit> Storage { get; }
 
-        int QueueFreeSlots { get; set; }
+        int QueueFreeSlots { get; }
 
-        int StorageFreeSlots { get; set; }
+        int StorageFreeSlots { get; }
 
         TimeSpan QueueTime { get; set; }
 
