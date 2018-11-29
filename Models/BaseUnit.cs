@@ -10,11 +10,9 @@ namespace BotFactory.Models
 {
     public abstract class BaseUnit : ReportingUnit, IBaseUnit
     {
-        // Propriétés.
+        // Propriétées.
         public string Name { get; set; }
-
         public double Speed { get; set; }
-
         public Coordinates CurrentPos { get; set; }
 
         // Constructeurs.
@@ -33,7 +31,7 @@ namespace BotFactory.Models
         {
             this.Name = name;
             this.Speed = speed;
-            this.CurrentPos = new Coordinates(0,0);
+            this.CurrentPos = new Coordinates(0, 0);
         }
 
         public BaseUnit(double buildTime, double vitesse = 1)
@@ -52,29 +50,20 @@ namespace BotFactory.Models
         }
 
         // Méthodes.
-        public async Task<bool> Move (Coordinates beginPos, Coordinates endPos)
+        public async Task<bool> Move(Coordinates beginPos, Coordinates endPos)
         {
-            try
+            if (beginPos.Equals(endPos))
             {
-                if (!beginPos.Equals(endPos))
-                {
-                    double distance = Vector.Length(Vector.FromCoordinates(beginPos, endPos));
-                    int time = Convert.ToInt32(distance/ this.Speed);
-
-                    // Add delay & conversion secondes en millisecondes.
-                    await Task.Delay(time*1000);
-
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
-            catch (Exception)
-            {
-                return false ;
-            }
+
+            double distance = Vector.Length(Vector.FromCoordinates(beginPos, endPos));
+            int time = Convert.ToInt32(distance / this.Speed);
+
+            // Add delay & conversion secondes en millisecondes.
+            await Task.Delay(time * 1000);
+
+            return true;
         }
     }
 }

@@ -9,9 +9,8 @@ namespace BotFactory.Common.Tools
 {
     public class Vector : IVector
     {
-        // Propriétés.
+        // Propriétées.
         public double X { get; set; }
-
         public double Y { get; set; }
 
         // Constructeurs.

@@ -31,10 +31,12 @@ namespace BotFactory.Pages
             _dataContext.Builder = factory;
             _dataContext.Builder.FactoryProgress += Builder_FactoryProgress;
         }
+
         private void Builder_FactoryProgress(object sender, System.EventArgs e)
         {
             _dataContext.ForceUpdate();
         }
+
         private void AddUnitToQueue_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             //if (ModelsList.SelectedIndex >= 0 && !string.IsNullOrEmpty(UnitName.Text))
@@ -44,6 +46,7 @@ namespace BotFactory.Pages
                 Type item = (Type)ModelsRobots.SelectedItem;
                 WorkingUnit instance = (WorkingUnit)Activator.CreateInstance(item);
                 MessageBoxResult result = MessageBox.Show("Vous avez choisi de construire le robot " + instance.Name + " qui a pour temps de construction " + instance.BuildTime + " . Etes-vous sûr de vouloir construire ce robot ?", "BotFactory", MessageBoxButton.YesNo);
+
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
@@ -52,23 +55,20 @@ namespace BotFactory.Pages
                         return;
                 }
 
-                var name = UnitName.Text;
-                _dataContext.Builder.AddWorkableUnitToQueue(item, name, new Coordinates(0, 0), new Coordinates(10, 10));
-
+                _dataContext.Builder.AddWorkableUnitToQueue(item, UnitName.Text, new Coordinates(0, 0), new Coordinates(10, 10));
                 _dataContext.ForceUpdate();
-
 
                 // Update Storage and Queue ItemsSources.
                 StorageList.Items.Refresh();
                 QueueList.Items.Refresh();
 
-                // Réinitialisation de la ComboBox.
+                // Reset ComboBox.
                 ModelsRobots.SelectedIndex = 0;
             }
         }
         private void UpdateButtonValidity()
         {
-            //AddUnitToQueue.IsEnabled = (ModelsList.SelectedIndex >= 0 || ModelsRobots.SelectedIndex >= 0) && !string.IsNullOrEmpty(UnitName.Text);
+            //AddUnitToQueue.IsEnabled = (ModelsRobots.SelectedIndex >= 0) && !string.IsNullOrEmpty(UnitName.Text);
             AddUnitToQueue.IsEnabled = ModelsRobots.SelectedIndex >= 0 && !string.IsNullOrEmpty(UnitName.Text);
         }
 

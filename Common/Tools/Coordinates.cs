@@ -8,7 +8,7 @@ namespace BotFactory.Common.Tools
 {
     public class Coordinates
     {
-        //Propriétés.
+        //Propriétées.
         public double X { get; set; }
 
         public double Y { get; set; }
@@ -29,15 +29,14 @@ namespace BotFactory.Common.Tools
         // Méthodes.
         public override bool Equals(object obj)
         {
-            if (obj == null || !this.GetType().Equals(obj.GetType()))
+            if (null == obj || !this.GetType().Equals(obj.GetType()))
             {
                 return false;
             }
-            else
-            {
-                Coordinates point = (Coordinates)obj;
-                return (this.X.Equals(point.X) && this.Y.Equals(point.Y));
-            }
+
+            Coordinates point = (Coordinates)obj;
+            return (this.X.Equals(point.X) && this.Y.Equals(point.Y));
+
         }
 
         public override int GetHashCode()

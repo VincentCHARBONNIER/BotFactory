@@ -12,7 +12,7 @@ namespace BotFactory.Models
         // Propriétée.
         public event EventHandler UnitStatusChanged;
 
-        // Constructeur.
+        // Constructeurs.
         public ReportingUnit()
         {
 

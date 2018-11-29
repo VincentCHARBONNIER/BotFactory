@@ -12,30 +12,12 @@ namespace BotFactory.Models
     {
         // Propriétées.
         public Coordinates ParkingPos { get; set; }
-
         public Coordinates WorkingPos { get; set; }
-
         public bool IsWorking { get; set; }
 
         // Constructeurs.
-        public WorkingUnit()
-        {
-
-        }
-
-        public WorkingUnit(string name) 
-            : base (name)
-        {
-
-        }
-
         public WorkingUnit(double buildTime, string name, double speed)
             : base(buildTime, name, 1)
-        {
-
-        }
-        public WorkingUnit(double buildTime, double vitesse)
-           : base(buildTime, 1)
         {
 
         }
@@ -63,9 +45,9 @@ namespace BotFactory.Models
 
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
 
@@ -83,9 +65,9 @@ namespace BotFactory.Models
 
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
         }
     }

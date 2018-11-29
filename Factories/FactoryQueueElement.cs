@@ -13,18 +13,11 @@ namespace BotFactory.Factories
     {
         // Propriétées.
         public string Name { get; set; }
-
         public Type Model { get; set; }
-
         public Coordinates ParkingPos { get; set; }
-
         public Coordinates WorkingPos { get; set; }
 
         // Constructeurs.
-        public FactoryQueueElement()
-        {
-
-        }
         public FactoryQueueElement(Type model, string name, Coordinates parkingPos, Coordinates workingPos)
         {
             this.Name = name;

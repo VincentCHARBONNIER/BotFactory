@@ -9,9 +9,8 @@ namespace BotFactory.Models
 {
     public abstract class BuildableUnit : IBuildableUnit
     {
-        // Propriétés.
+        // Propriétées.
         public double BuildTime { get; set; }
-
         public string Model { get; set; }
 
         // Constructeurs.
